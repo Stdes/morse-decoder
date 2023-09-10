@@ -47,10 +47,10 @@ function decode(expr) {
     let morseCode = '';
     let outputStr = '';
 
-   
+    
     for (let i = 0; i < expr.length+1; i = i + 2) {
 
-        //если счетчик кратен 10, значит нужно определить символ алфавита и добавить его в строку
+        //если счетчик кратен 10, нужно определить символ алфавита и добавить его в строку
         if ((i !== 0) && ((i % 10) === 0)) {
             outputStr = outputStr + MORSE_TABLE[morseCode];
             morseCode = '';
@@ -63,16 +63,20 @@ function decode(expr) {
             outputStr = outputStr + ' ';
             i = i + 10; //скипаем последовательность **********
         };
-
-        //вместо ....- мы получаем ...-
-
     };
-
     return outputStr;
-
-   
-   
 }
+
+/*
+проходят все тесты, кроме одного: 
+ожидается:
++answer on the ultimate question of life the universe and everything is 42
+получено:
+-answer on the ultimate question of life the universe and everything is v2
+
+то есть вместо 42 получаем v2 или вместо вместо ....- мы получаем ...-
+одна точка куда-то девается. Не понимаю, как при этом все 49 тестов проходят.
+*/
 
 module.exports = {
     decode
